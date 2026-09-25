@@ -77,7 +77,18 @@ body.only-mid .high-c, body.only-high .mid-c{display:none}
 body.only-mid .col.empty, body.only-high .col.empty{display:none}
 body.only-mid .passage-row, body.only-mid .pair, body.only-high .passage-row, body.only-high .pair{grid-template-columns:1fr}
 body.only-high .group.mid-only{display:none}
-footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px;display:flex;flex-direction:column;gap:16px}
+.overview{display:flex;flex-direction:column;gap:10px}
+.overview h2{font-family:var(--serif);font-size:16px;color:var(--ink);margin:0}
+.overview dl{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.overview dl div{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:flex;flex-direction:column;gap:2px}
+.overview dt{font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.overview dd{margin:0;font-size:14.5px;color:var(--ink);font-variant-numeric:tabular-nums}
+.src{margin:0;display:flex;flex-direction:column;gap:4px}
+.src div{display:flex;gap:10px}
+.src dt{flex:none;font-weight:600;color:var(--ink)}
+.src dd{margin:0}
+@media (max-width:720px){.overview dl{grid-template-columns:1fr}}
 @media (max-width:720px){
   .forms,.passage-row,.pair{grid-template-columns:1fr}
   .col.empty{display:none}
@@ -89,12 +100,12 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 
 <div class="wrap">
   <header>
-    <div class="eyebrow"><span>서울 중고교생 문해력 설문</span></div>
+    <div class="eyebrow"><span>서울 중고교생 200명 문해력 설문</span></div>
     <h1>중학생과 고등학생, 문해력 진단 문항</h1>
     <p class="lede">두 문제지는 문항 순서와 유형이 같게 짜여 있습니다. 같은 번호끼리 나란히 놓았습니다. 두 문제지 모두 14번까지는 문해력 문항, 15~17번은 읽기 습관 문항입니다.</p>
     <div class="forms">
-      <div class="form-card mid"><b>중학생 문해력 진단조사</b><span>중학생 · 학년 선택 + 17문항</span><a href="https://docs.google.com/forms/d/e/1FAIpQLSexVe-zVQFkPBDrN5We_OjxcQujI2ARzwG7QaC1omngfGSX-w/viewform" target="_blank" rel="noopener">원본 폼 열기</a></div>
-      <div class="form-card high"><b>고등학교 문해력 진단조사</b><span>고등학생 · 17문항 · 약 10분</span><a href="https://docs.google.com/forms/d/e/1FAIpQLScH3zlMOqbKySC7LG6qEyqfJDYhHVgfSHLbVqhPRDGo_tpGtQ/viewform" target="_blank" rel="noopener">원본 폼 열기</a></div>
+      <div class="form-card mid"><b>중학생 문해력 진단조사</b><span>중학생 · 17문항</span><a href="https://docs.google.com/forms/d/e/1FAIpQLSexVe-zVQFkPBDrN5We_OjxcQujI2ARzwG7QaC1omngfGSX-w/viewform" target="_blank" rel="noopener">원본 폼 열기</a></div>
+      <div class="form-card high"><b>고등학교 문해력 진단조사</b><span>고등학생 · 17문항</span><a href="https://docs.google.com/forms/d/e/1FAIpQLScH3zlMOqbKySC7LG6qEyqfJDYhHVgfSHLbVqhPRDGo_tpGtQ/viewform" target="_blank" rel="noopener">원본 폼 열기</a></div>
     </div>
   </header>
 
@@ -110,8 +121,18 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   <main id="list" class="wrap" style="gap:36px"></main>
 
   <footer>
-    <span>출처: 각 구글폼 응답 페이지(2026년 9월 24일 확인). 문항 텍스트는 두 폼의 PDF(2026년 9월 24일 출력)와 대조했습니다.</span>
-    <span>영역 이름은 문항 구성을 보고 편집 과정에서 붙인 분류이며, 폼에 적힌 이름이 아닙니다. 정답은 싣지 않았습니다.</span>
+    <section class="overview" aria-labelledby="ov-h">
+      <h2 id="ov-h">조사 개요</h2>
+      <dl>
+        <div><dt>조사 기간</dt><dd>2026년 9월 17일~9월 23일</dd></div>
+        <div><dt>조사 대상</dt><dd>중학생 172명, 고등학생 28명</dd></div>
+        <div><dt>조사 방법</dt><dd>구글 온라인 폼</dd></div>
+      </dl>
+    </section>
+    <dl class="src">
+      <div><dt>출처</dt><dd>중학생, 고등학생 구글폼 응답 페이지(2026년 9월 24일 기준)</dd></div>
+      <div><dt>참고</dt><dd>각 영역은 문해력 진단 문항 유형에 따라 구성한 것입니다. 정답은 싣지 않았습니다.</dd></div>
+    </dl>
   </footer>
 </div>
 
