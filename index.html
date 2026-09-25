@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="중학생용과 고등학생용 문해력 진단 문항을 같은 번호끼리 나란히 비교합니다.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>문해력 진단 문제지 비교</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F4F5F2; --sheet:#FFFFFF; --ink:#1C222B; --muted:#5E6570; --line:#D8DBD5;
+  --mid:#2E6B5B; --mid-soft:#E4EFEA; --high:#34489A; --high-soft:#E6E9F5;
+  --passage:#F0F1EC; --chip:#ECEDE8;
+  --serif:"Noto Serif KR","Nanum Myeongjo","Batang",serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#15181D; --sheet:#1D2128; --ink:#E6E8EA; --muted:#A0A6AF; --line:#343941;
+    --mid:#6FC2A9; --mid-soft:#1F3130; --high:#98A8F0; --high-soft:#232A42;
+    --passage:#23272E; --chip:#2A2F37;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#15181D; --sheet:#1D2128; --ink:#E6E8EA; --muted:#A0A6AF; --line:#343941;
+  --mid:#6FC2A9; --mid-soft:#1F3130; --high:#98A8F0; --high-soft:#232A42;
+  --passage:#23272E; --chip:#2A2F37;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;padding-inline:16px;padding-block:32px 56px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:12px}
+.eyebrow{font-size:12px;letter-spacing:.08em;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.status{border:1px solid var(--line);border-radius:4px;padding:1px 8px;letter-spacing:.02em}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(26px,4vw,36px);line-height:1.25;margin:0;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:62ch}
+.forms{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-card{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;border-top:3px solid var(--c)}
+.form-card.mid{--c:var(--mid)} .form-card.high{--c:var(--high)}
+.form-card b{font-family:var(--serif);font-size:16px}
+.form-card span{font-size:13px;color:var(--muted)}
+.form-card a{font-size:13px;color:var(--c);text-underline-offset:3px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;position:sticky;top:env(safe-area-inset-top,0px);background:var(--paper);padding-block:10px;z-index:2;border-bottom:1px solid var(--line)}
+.controls .lbl{font-size:13px;color:var(--muted);margin-right:4px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--sheet)}
+.seg button{font:inherit;font-size:14px;border:0;background:transparent;color:var(--ink);padding:6px 14px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--sheet)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--high);outline-offset:2px}
+.group{display:flex;flex-direction:column;gap:14px}
+.group-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.group-head h2{font-family:var(--serif);font-size:19px;margin:0}
+.group-head .range{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.passage-row,.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.col{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.col.empty{background:transparent;border-style:dashed;color:var(--muted);font-size:13px;justify-content:center;align-items:center;text-align:center}
+.tag{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--c);display:flex;align-items:center;gap:6px}
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.mid-c{--c:var(--mid)} .high-c{--c:var(--high)}
+.q{font-family:var(--serif);font-size:16px;line-height:1.65;margin:0;display:flex;gap:8px}
+.q .n{font-weight:700;font-variant-numeric:tabular-nums;flex:none}
+.q em{font-style:normal;font-weight:700;box-shadow:inset 0 -.45em 0 var(--soft)}
+.mid-c{--soft:var(--mid-soft)} .high-c{--soft:var(--high-soft)}
+.box{font-family:var(--serif);font-size:15px;border:1px solid var(--line);padding:10px 14px;border-radius:4px;margin:0}
+.opts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:14.5px}
+.opts li{display:flex;gap:8px}
+.opts li span:first-child{flex:none;color:var(--muted)}
+.passage{background:var(--passage);border:0}
+.passage h3{margin:0;font-size:13px;font-weight:600;color:var(--muted)}
+.passage p{margin:0;font-family:var(--serif);font-size:15px;line-height:1.85}
+body.only-mid .high-c, body.only-high .mid-c{display:none}
+body.only-mid .col.empty, body.only-high .col.empty{display:none}
+body.only-mid .passage-row, body.only-mid .pair, body.only-high .passage-row, body.only-high .pair{grid-template-columns:1fr}
+body.only-high .group.mid-only{display:none}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+@media (max-width:720px){
+  .forms,.passage-row,.pair{grid-template-columns:1fr}
+  .col.empty{display:none}
+  .col{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span>서울 중고교생 문해력 설문</span></div>
+    <h1>중학생과 고등학생, 문해력 진단 문항</h1>
+    <p class="lede">두 문제지는 문항 순서와 유형이 같게 짜여 있습니다. 같은 번호끼리 나란히 놓았습니다. 두 문제지 모두 14번까지는 문해력 문항, 15~17번은 읽기 습관 문항입니다.</p>
+    <div class="forms">
+      <div class="form-card mid"><b>중학생 문해력 진단조사</b><span>중학생 · 학년 선택 + 17문항</span><a href="https://docs.google.com/forms/d/e/1FAIpQLSexVe-zVQFkPBDrN5We_OjxcQujI2ARzwG7QaC1omngfGSX-w/viewform" target="_blank" rel="noopener">원본 폼 열기</a></div>
+      <div class="form-card high"><b>고등학교 문해력 진단조사</b><span>고등학생 · 17문항 · 약 10분</span><a href="https://docs.google.com/forms/d/e/1FAIpQLScH3zlMOqbKySC7LG6qEyqfJDYhHVgfSHLbVqhPRDGo_tpGtQ/viewform" target="_blank" rel="noopener">원본 폼 열기</a></div>
+    </div>
+  </header>
+
+  <div class="controls" role="group" aria-label="보기 방식">
+    <span class="lbl">보기</span>
+    <div class="seg">
+      <button type="button" id="v-both" data-v="both" aria-pressed="true">나란히</button>
+      <button type="button" id="v-mid" data-v="mid" aria-pressed="false">중학생만</button>
+      <button type="button" id="v-high" data-v="high" aria-pressed="false">고등학생만</button>
+    </div>
+  </div>
+
+  <main id="list" class="wrap" style="gap:36px"></main>
+
+  <footer>
+    <span>출처: 각 구글폼 응답 페이지(2026년 9월 24일 확인). 문항 텍스트는 두 폼의 PDF(2026년 9월 24일 출력)와 대조했습니다.</span>
+    <span>영역 이름은 문항 구성을 보고 편집 과정에서 붙인 분류이며, 폼에 적힌 이름이 아닙니다. 정답은 싣지 않았습니다.</span>
+  </footer>
+</div>
+
+<script>
+const M = "①②③④";
+const groups = [
+ {name:"어휘 이해", items:[
+  {m:{n:1,q:"다음 문장에서 <em>유예했다</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"학교는 비 예보를 확인한 뒤 체육대회 개최 결정을 다음 주까지 유예했다.",o:["체육대회 장소를 바꿨다","체육대회를 즉시 취소했다","결정을 다음 주까지 미뤘다","결정을 예정대로 확정했다"]},
+   h:{n:1,q:"다음 문장에서 <em>간과했다</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"위원회는 정책의 단기 효과만 강조한 나머지 장기적인 부작용을 간과했다.",o:["장기적인 부작용을 다른 기관에 알렸다","장기적인 부작용을 실제보다 크게 부풀렸다","장기적인 부작용을 미리 제거했다","장기적인 부작용을 중요하게 살피지 않고 지나쳤다"]}},
+  {m:{n:2,q:"다음 문장에서 <em>인용했다</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"민지는 보고서에 전문가의 연구 결과를 출처와 함께 인용했다.",o:["다른 사람의 자료를 출처와 함께 가져와 사용했다","다른 사람의 글을 자신의 생각처럼 바꿔 썼다","필요한 자료를 인터넷에서 삭제했다","연구 결과를 다른 사람에게 빌려주는 것을 허락했다"]},
+   h:{n:2,q:"다음 문장에서 <em>불가피했다</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"폭설로 철도 운행이 중단되면서 행사 연기는 불가피했다.",o:["행사를 연기할 필요가 전혀 없었다","행사를 연기하는 것을 피하기 어려웠다","행사를 예정보다 빨리 열어야 했다","행사의 규모를 줄일 수밖에 없었다"]}}]},
+ {name:"조사와 문장구조", items:[
+  {m:{n:3,q:"다음 문장에서 선물을 받은 사람은 누구입니까?",box:"수현이가 민지에게 선물을 건넸다.",o:["수현","민지","두 사람 모두","알 수 없다"]},
+   h:{n:3,q:"다음 문장에서 연구진이 지적한 내용은 무엇입니까?",box:"연구진은 정부가 공개한 자료가 기존 결론을 충분히 뒷받침하지 못한다고 지적했다.",o:["정부가 자료를 공개하지 않았다는 점","공개된 자료가 기존 결론을 충분히 지지하지 못한다는 점","연구진이 기존 결론에 동의한다는 점","정부가 연구진의 자료를 반박했다는 점"]}},
+  {m:{n:4,q:"다음 중 조사를 가장 자연스럽게 사용한 문장은 무엇입니까?",o:["나는 친구의 공원에서 만나 책이 빌려주었다","나는 친구가 공원으로 만나 책을 빌려주었다","나는 친구를 공원에서 만나 책을 빌려주었다","나는 친구에게 공원에서 만나 책이 빌려주었다"]},
+   h:{n:4,q:"다음 중 조사와 문장구조가 가장 자연스러운 문장은 무엇입니까?",o:["연구팀은 조사 결과에 근거해 기존 가설을 수정했다.","연구팀은 조사 결과의 근거해 기존 가설을 수정했다.","연구팀에게 조사 결과를 근거로 기존 가설이 수정됐다.","연구팀이 조사 결과에 근거로 기존 가설을 수정했다."]}}]},
+ {name:"관용 표현", items:[
+  {m:{n:5,q:"다음 문장에서 <em>어깨가 무거웠다</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"반장이 된 지수는 학급 행사를 준비하면서 어깨가 무거웠다.",o:["가방이나 짐이 무거웠다","어깨를 다쳐 움직이기 어려웠다","맡은 일에 책임과 부담을 느꼈다","친구들의 도움을 받고 싶었다"]},
+   h:{n:5,q:"다음 문장에서 <em>무게를 두었다</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"재판부는 피고인의 주장보다 객관적인 기록에 더 무게를 두었다.",o:["기록의 종이 무게를 측정했다","객관적인 기록을 더 중요하게 판단했다","피고인의 주장을 완전히 삭제했다","기록의 분량이 더 많다고 판단했다"]}},
+  {m:{n:6,q:"다음 문장에서 '<em>선을 그었다</em>'의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"민수는 부정행위에 대해서는 분명하게 선을 그었다.",o:["종이에 선을 그었다","자신의 입장과 허용 범위를 분명히 했다","다른 사람의 의견을 그대로 받아들였다","결정을 다음으로 미뤘다"]},
+   h:{n:6,q:"다음 문장에서 <em>고삐를 죄겠다</em>는 뜻으로 가장 알맞은 것은 무엇입니까?",box:"금융당국은 불법 대출 광고에 대한 감독의 고삐를 죄겠다고 밝혔다.",o:["감독 기준을 완화하겠다","광고를 대신 제작하겠다","감독과 단속을 더욱 강화하겠다","관련 결정을 뒤로 미루겠다"]}}]},
+ {name:"단어의 정확한 사용", items:[
+  {m:{n:7,q:"다음 중 <em>환멸</em>이라는 단어를 가장 자연스럽게 사용한 문장은 무엇입니까?",o:["친구가 늦어서 나는 조금 환멸났다.","운동을 오래 했더니 몸이 환멸했다.","반복되는 거짓과 위선을 보며 그 조직에 환멸을 느꼈다.","날씨가 더워서 하루 종일 환멸이 났다."]},
+   h:{n:7,q:"다음 중 <em>반증</em>이라는 단어를 가장 정확하게 사용한 문장은 무엇입니까?",o:["한 번의 성공은 그 정책이 언제나 효과적이라는 주장을 반증했다.","새 증거는 피고인이 현장에 있었다는 주장을 반증했다.","통계는 두 집단의 차이를 반증 없이 보여줬다.","그는 친구의 의견에 반증을 느꼈다."]}},
+  {m:{n:8,q:"다음 상황에서 ‘나’가 느낀 감정을 가장 잘 나타내는 말은 무엇입니까?",box:"몇 주 동안 연습한 끝에 어려운 곡을 처음부터 끝까지 연주했다. 처음에는 불가능할 것 같았는데, 끝까지 노력해 해냈다는 생각에 나 자신이 자랑스러웠다.",o:["안도감","뿌듯함","기대감","우월감"]},
+   h:{n:8,q:"다음 중 <em>지양하다</em>를 가장 자연스럽게 사용한 문장은 무엇입니까?",o:["학교는 학생 참여를 지양하기 위해 토론 수업을 늘렸다.","보고서는 근거 없는 추측을 지양하고 확인된 사실을 중심으로 작성해야 한다.","우리는 목표를 지양하며 꾸준히 노력했다.","그는 시험 합격을 지양하기로 결심했다."]}}]},
+ {name:"서술어와 표현", items:[
+  {m:{n:9,q:"다음 문장을 뜻이 더 분명하게 드러나도록 고친 것은 무엇입니까?",box:"토론에서 민수는 반대하는 모습을 보였다. 지수는 새로운 의견을 보였다.",o:["토론에서 민수는 반대했고, 지수는 새로운 의견을 제시했다.","토론에서 민수와 지수는 여러 모습을 보였다.","토론에서 민수는 보였고, 지수도 보였다.","토론에서 민수와 지수는 의견 충돌을 겪었다."]},
+   h:{n:9,q:"다음 문장을 뜻이 더 분명하게 드러나도록 고친 것은 무엇입니까?",box:"지난해 수출은 감소하는 모습을 보였고, 정부는 새로운 대책을 보였다.",o:["지난해 정부의 새로운 대책으로 수출이 감소하는 모습을 보였다.","지난해 수출 감소와 정부 대책은 서로 다른 모습을 보였다.","지난해 수출 감소와 정부 대책은 함께 보였다.","지난해 수출은 감소했고, 정부는 새로운 대책을 발표했다."]}},
+  {m:{n:10,q:"다음 문장을 가장 정확하고 자연스럽게 고친 것은 무엇입니까?",box:"선생님은 학생들에게 책을 읽게 시키고 생각을 말하게 시켰다.",o:["선생님은 학생들을 시켜서 책이 생각을 말하게 했다.","선생님은 학생들에게 책과 생각을 시켰다.","선생님은 학생들에게 읽기를 보이고 말을 보였다.","선생님은 학생들에게 책을 읽고 생각을 발표하도록 했다."]},
+   h:{n:10,q:"다음 문장을 가장 정확하고 자연스럽게 고친 것은 무엇입니까?",box:"담당자는 참가자들에게 자료를 확인하게 시키고 의견을 제출하게 시켰다.",o:["담당자는 참가자들에게 자료를 확인한 뒤 의견을 제출하도록 안내했다.","담당자는 참가자들에게 자료를 확인하기 위한 의견을 제출하도록 시켰다.","담당자는 참가자들에게 자료를 확인시켜 의견을 보였다.","담당자는 참가자들에게 자료가 시킨대로 의견을 제출하도록 시켰다."]}}]},
+ {name:"맥락 추론", items:[
+  {m:{n:11,q:"다음 글에서 <em>찰나</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"적선이 방향을 바꿔 다가오기 시작했다. 그 찰나, 장군은 적선을 향해 배를 돌리라고 명령했다. 장군이 이끈 조선 수군은 치열한 전투를 이어갔다. 이 전투는 이순신 장군이 지휘한 노량해전이었다.",o:["장군의 이름","조선 수군이 사용한 배","아주 짧은 순간","노량해전이 벌어진 장소"]},
+   h:{n:11,q:"다음 글에서 <em>교착 상태</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"노사 양측은 핵심 조건에서 한 걸음도 물러서지 않았다. 세 차례 회의가 열렸지만 협상은 교착 상태에 빠져 더 이상 진전되지 않았다.",o:["협상이 빠르게 타결되는 상태","양측이 새로운 조건에 합의한 상태","대립으로 협상이 앞으로 나아가지 못하는 상태","회의 일정이 공개되지 않은 상태"]}},
+  {m:{n:12,q:"다음 글에서 <em>적요해졌다</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"발표자가 단상에 오르자 회의장은 적요해졌다. 조금 전까지 이야기를 나누던 사람들도 말을 멈추고 발표자를 바라봤다.",o:["시끄러워졌다","조용해졌다","어두워졌다","넓어졌다"]},
+   h:{n:12,q:"다음 글에서 <em>편린</em>의 뜻으로 가장 알맞은 것은 무엇입니까?",box:"낡은 사진 한 장은 당시 노동자들의 삶의 편린을 보여준다. 그 사진만으로 시대 전체를 알 수는 없지만, 작업환경의 일부를 짐작할 수 있다.",o:["전체를 이루는 작은 한 부분","사실과 무관한 거짓 정보","시대 전체를 설명하는 완전한 기록","사진을 보관하는 방법"]}}]},
+ {name:"장문과 논리구조", passage:{
+   m:{title:"태블릿PC 지급과 학습 효과",text:"서울 강서구에 있는 한 중학교는 올해 모든 학생에게 최신형 태블릿PC를 지급했다. 교사들은 사진과 영상을 수업에 바로 활용할 수 있었고, 학생들은 필요한 자료를 빠르게 찾을 수 있었다. 수업 직후 실시한 퀴즈 시험에서는 이전보다 평균점수가 높아졌다. 학교는 디지털 기기가 학습에 긍정적인 효과를 냈다고 판단했다. 그러나 일부 학생들은 긴 글을 읽다가 다른 화면으로 이동하거나, 검색으로 답을 찾고도 왜 그 답이 맞는지 설명하지 못했다. 한 학기가 지난 뒤 실시한 시험에서는 처음 퀴즈 시험에서 나타났던 점수 차이가 줄어들었다. 연구진은 디지털 기기가 단기적인 정보 탐색에는 도움이 될 수 있지만, 학습 내용을 오래 기억하게 하는지는 별도로 살펴봐야 한다고 설명했다. 이에 학교는 다음 학기부터 디지털 수업과 함께 종이책을 깊이 읽고 자신의 말로 정리하는 시간을 늘리기로 했다."},
+   h:{title:"늦은 등교 시범운영",text:"서울 성북구에 위치한 한 고등학교는 학생들의 수면 부족을 줄이기 위해 한 학기 동안 등교 시각을 오전 8시 20분에서 오전 9시로 늦췄다. 시범운영 뒤 1교시 졸림을 호소한 학생과 지각한 학생은 줄었다. 학생들이 보고한 평균 수면시간도 늘었다. 그러나 전체 교과의 평균 시험점수에서 뚜렷한 변화는 나타나지 않았다. 수업 종료 시각도 30분 늦어지면서 일부 학생은 방과후 활동과 학원 이동에 어려움을 겪었다. 학교버스 운행시간이 연장됐고 맞벌이 가정도 각자의 일정을 조정해야 했다. 연구진은 늦은 등교가 학생의 피로를 줄이는 데는 도움이 됐지만 성적 향상을 자동으로 보장하지는 않는다고 설명했다. 또 정책의 효과는 수업 운영, 통학 여건, 방과후 일정이 함께 조정되는지에 따라 달라질 수 있다고 덧붙였다. 학교는 다음 학기에도 늦은 등교를 유지하되 교통편과 방과후 일정부터 보완하기로 했다."}},
+  items:[
+  {m:{n:13,q:"수업 직후 퀴즈와 한 학기 뒤 시험의 결과는 어떻게 달랐습니까?",o:["두 시험 모두 점수가 계속 높아졌다.","직후에는 점수가 올랐지만 한 학기 뒤에는 그 차이가 줄었다.","직후에는 점수가 낮았지만 한 학기 뒤 크게 올랐다.","글에는 한 학기 뒤 시험 결과가 나오지 않는다."]},
+   h:{n:13,q:"시범운영 뒤 나타난 결과를 가장 정확하게 설명한 것은 무엇입니까?",o:["졸림과 지각은 줄었고 수면시간은 늘었지만 평균 시험점수에는 뚜렷한 변화가 없었다.","졸림과 지각, 시험점수가 모두 크게 개선됐다.","수면시간은 줄었지만 방과후 활동 참여는 늘었다.","시험점수는 올랐지만 학생들의 피로는 더 심해졌다."]}},
+  {m:{n:14,q:"위 글의 중심 내용으로 가장 알맞은 것은 무엇입니까?",o:["태블릿PC를 사용하면 모든 시험 성적이 높아진다.","디지털 기기는 학습에 도움이 되지 않으므로 학교에서 없애야 한다.","디지털 기기의 효과는 사용 방식과 측정 시점에 따라 다르므로 깊이 읽기 훈련을 함께 해야 한다.","학생들은 종이책을 우선으로 읽더라도 사진과 영상만 이용해야 한다."]},
+   h:{n:14,q:"위 글의 중심 내용으로 가장 알맞은 것은 무엇입니까?",o:["등교 시각을 늦추면 모든 학생의 성적이 반드시 오른다.","늦은 등교는 효과가 없으므로 즉시 중단해야 한다.","늦은 등교는 피로를 줄일 수 있지만 다른 교육·통학 조건을 함께 조정해야 효과를 높일 수 있다.","학교버스 문제만 해결하면 학생들의 수면 부족이 모두 사라진다."]}}]},
+ {name:"읽기 습관", items:[
+  {m:{n:15,q:"평소 교과서 이외의 책을 얼마나 자주 읽습니까?",o:["거의 읽지 않는다","월 1권 미만","월 1~2권","월 3권 이상"]},
+   h:{n:15,q:"평소 교과서 이외의 책을 얼마나 자주 읽습니까?",o:["거의 안 읽음","월 1권 미만","월 1~2권","월 3권 이상"]}},
+  {m:{n:16,q:"하루 숏폼 영상이나 SNS 이용시간은 어느 정도입니까?",o:["30분 미만","30분~1시간","1~2시간","2시간 이상"]},
+   h:{n:16,q:"하루 숏폼 영상이나 SNS 이용시간은?",o:["30분 미만","30분~1시간","1~2시간","2시간 이상"]}},
+  {m:{n:17,q:"긴 글을 읽을 때 가장 가까운 모습은 무엇입니까?",o:["끝까지 읽는다","다시 읽는다","필요한 부분만 읽는다","중간에 그만둘 때가 많다"]},
+   h:{n:17,q:"긴 글을 읽을 때 가장 가까운 모습은?",o:["끝까지 읽음","다시 읽음","필요한 부분만 읽음","중간에 그만둠"]}}]}
+];
+
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function col(it, who){
+  const cls = who==="m" ? "mid-c" : "high-c";
+  const label = who==="m" ? "중학생" : "고등학생";
+  if(!it) return `<div class="col empty ${who==="m"?"":"high-empty"}">고등학생 문제지에는 없는 문항입니다</div>`;
+  return `<article class="col ${cls}">
+    <div class="tag">${label} ${it.n}번</div>
+    <p class="q"><span class="n">${it.n}.</span><span>${it.q}</span></p>
+    ${it.box?`<p class="box">${esc(it.box)}</p>`:""}
+    <ol class="opts">${it.o.map((t,i)=>`<li><span>${M[i]}</span><span>${esc(t)}</span></li>`).join("")}</ol>
+  </article>`;
+}
+function passage(p, who){
+  const cls = who==="m" ? "mid-c" : "high-c";
+  const label = who==="m" ? "중학생" : "고등학생";
+  return `<article class="col passage ${cls}">
+    <div class="tag">${label} 지문 · ${esc(p.title)}</div>
+    <h3>다음 글을 읽고 13번과 14번에 답하세요.</h3>
+    <p>${esc(p.text)}</p>
+  </article>`;
+}
+const list = document.getElementById("list");
+list.innerHTML = groups.map(g=>{
+  const nums = g.items.map(x=>x.m.n);
+  const range = nums.length>1 ? `${nums[0]}–${nums[nums.length-1]}번` : `${nums[0]}번`;
+  return `<section class="group${g.midOnly?" mid-only":""}">
+    <div class="group-head"><h2>${g.name}</h2><span class="range">${range}${g.midOnly?" · 중학생용에만 있음":""}</span></div>
+    ${g.passage?`<div class="passage-row">${passage(g.passage.m,"m")}${passage(g.passage.h,"h")}</div>`:""}
+    ${g.items.map(x=>`<div class="pair">${col(x.m,"m")}${col(x.h,"h")}</div>`).join("")}
+  </section>`;
+}).join("");
+
+const btns = document.querySelectorAll(".seg button");
+function setView(v){
+  document.body.classList.toggle("only-mid", v==="mid");
+  document.body.classList.toggle("only-high", v==="high");
+  btns.forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.v===v)));
+  try{ localStorage.setItem("lit-view", v); }catch(e){}
+}
+btns.forEach(b=>b.addEventListener("click",()=>setView(b.dataset.v)));
+try{ const s = localStorage.getItem("lit-view"); if(s) setView(s); }catch(e){}
+</script>
+</body>
+</html>
